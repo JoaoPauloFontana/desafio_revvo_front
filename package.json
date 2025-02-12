@@ -2,9 +2,25 @@
   "name": "desafio_revvo_front",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon server.js\" \"gulp\""
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "express": "^4.21.2",
+    "gulp": "^5.0.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "concurrently": "^9.1.2",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^9.1.0",
+    "gulp-sass": "^6.0.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.84.0"
+  }
 }
