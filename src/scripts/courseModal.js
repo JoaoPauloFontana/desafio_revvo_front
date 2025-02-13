@@ -76,12 +76,9 @@ function initCourseModal() {
                 images: base64Images
             };
 
-            console.log("Enviando curso para API:", newCourse);
-
             try {
                 const response = await createCourse(newCourse);
 
-                console.log(response);
                 if (response?.success) {
                     Swal.fire({
                         icon: "success",
@@ -123,7 +120,6 @@ function initCourseModal() {
                     }
                 }
             } catch (error) {
-                console.log(error);
                 Swal.fire({
                     icon: "error",
                     title: "Erro ao conectar com o servidor",
