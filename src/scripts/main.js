@@ -1,5 +1,7 @@
 import { fetchCourses } from "./api.js";
 import { setupSearch } from "./search.js";
+import { setupCourseModal } from "./courseModal.js";
+import { state } from "./state.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Página carregada com sucesso!");
@@ -8,40 +10,42 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         const courses = await fetchCourses();
-        renderCourses(courses);
+        state.setCourses(courses);
         setupSearch();
     } catch (error) {
         console.error("Erro ao buscar cursos:", error);
-        renderCourses([]);
+        state.setCourses([]);
         setupSearch();
     }
 
-    function renderCourses(courses) {
+    function renderCourses() {
         courseListContainer.innerHTML = "";
 
-        if (courses.length > 0) {
-            courses.forEach(course => {
-                const courseCard = document.createElement("div");
-                courseCard.classList.add("course");
+        state.courses.forEach(course => {
+            const courseCard = document.createElement("div");
+            courseCard.classList.add("course");
 
-                courseCard.innerHTML = `
-                    <img src="${course.first_image}" alt="${course.title}">
-                    <h3>${course.title}</h3>
-                    <p>${course.description}</p>
-                    <a href="${course.link}" target="_blank">
-                        <button>VER CURSO</button>
-                    </a>
-                `;
+            courseCard.innerHTML = `
+                <img src="${course.first_image}" alt="${course.title}">
+                <h3>${course.title}</h3>
+                <p>${course.description}</p>
+                <a href="${course.link}" target="_blank">
+                    <button>VER CURSO</button>
+                </a>
+            `;
 
-                courseListContainer.appendChild(courseCard);
-            });
-        }
+            courseListContainer.appendChild(courseCard);
+        });
 
         const addCourseBtn = document.createElement("div");
         addCourseBtn.classList.add("course", "add-course");
         addCourseBtn.innerHTML = `<span>+</span><p>ADICIONAR CURSO</p>`;
+        addCourseBtn.addEventListener("click", setupCourseModal);
         courseListContainer.appendChild(addCourseBtn);
     }
+
+    renderCourses();
+    document.addEventListener("stateUpdated", renderCourses);
 
     loadModal(() => {
         if (typeof modalInit === "function") modalInit();
