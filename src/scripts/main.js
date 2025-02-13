@@ -1,4 +1,5 @@
 import { fetchCourses } from "./api.js";
+import { setupSearch } from "./search.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Página carregada com sucesso!");
@@ -8,9 +9,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         const courses = await fetchCourses();
         renderCourses(courses);
+        setupSearch();
     } catch (error) {
         console.error("Erro ao buscar cursos:", error);
         renderCourses([]);
+        setupSearch();
     }
 
     function renderCourses(courses) {
