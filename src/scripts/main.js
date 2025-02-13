@@ -1,22 +1,49 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { fetchCourses } from "./api.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Página carregada com sucesso!");
 
-    const scriptBanner = document.createElement("script");
-    scriptBanner.src = "assets/js/banner.js";
-    scriptBanner.defer = true;
-    document.body.appendChild(scriptBanner);
+    const courseListContainer = document.querySelector(".course-list");
+
+    try {
+        const courses = await fetchCourses();
+        renderCourses(courses);
+    } catch (error) {
+        console.error("Erro ao buscar cursos:", error);
+        renderCourses([]);
+    }
+
+    function renderCourses(courses) {
+        courseListContainer.innerHTML = "";
+
+        if (courses.length > 0) {
+            courses.forEach(course => {
+                const courseCard = document.createElement("div");
+                courseCard.classList.add("course");
+
+                courseCard.innerHTML = `
+                    <img src="${course.first_image}" alt="${course.title}">
+                    <h3>${course.title}</h3>
+                    <p>${course.description}</p>
+                    <a href="${course.link}" target="_blank">
+                        <button>VER CURSO</button>
+                    </a>
+                `;
+
+                courseListContainer.appendChild(courseCard);
+            });
+        }
+
+        const addCourseBtn = document.createElement("div");
+        addCourseBtn.classList.add("course", "add-course");
+        addCourseBtn.innerHTML = `<span>+</span><p>ADICIONAR CURSO</p>`;
+        courseListContainer.appendChild(addCourseBtn);
+    }
 
     loadModal(() => {
         if (typeof modalInit === "function") modalInit();
         if (typeof closeModal === "function") closeModal();
     });
-
-    const addCourseBtn = document.querySelector(".add-course");
-    if (addCourseBtn) {
-        addCourseBtn.addEventListener("click", () => {
-            alert("Adicionar novo curso em breve!");
-        });
-    }
 
     const searchInput = document.querySelector("input[type='text']");
     if (searchInput) {
