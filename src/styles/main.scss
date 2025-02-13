@@ -106,3 +106,26 @@ footer {
   padding: 20px;
   margin-top: 40px;
 }
+
+.course-image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.new-course-ribbon {
+  position: absolute;
+  top: 50px;
+  right: -25px;
+  background-color: #FFD700;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 30px;
+  transform: rotate(45deg);
+  transform-origin: top right;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+

@@ -22,11 +22,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderCourses() {
         courseListContainer.innerHTML = "";
 
+        const today = new Date();
+        const threeDaysAgo = new Date();
+        threeDaysAgo.setDate(today.getDate() - 3);
+
         state.courses.forEach(course => {
             const courseCard = document.createElement("div");
             courseCard.classList.add("course");
 
+            const createdAt = new Date(course.created_at);
+            const isNew = createdAt >= threeDaysAgo;
+
             courseCard.innerHTML = `
+                <div class="course-image-container">
+                    <img src="${course.first_image}" alt="${course.title}">
+                    ${isNew ? '<div class="new-course-ribbon">NOVO</div>' : ""}
+                </div>
                 <img src="${course.first_image}" alt="${course.title}">
                 <h3>${course.title}</h3>
                 <p>${course.description}</p>

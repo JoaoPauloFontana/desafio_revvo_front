@@ -73,14 +73,21 @@ button {
   padding: 10px 15px;
   border-radius: 25px;
   cursor: pointer;
-  background-color: #007bff;
-  border: none;
-  color: white;
+  background-color: transparent;
+  border: 2px solid #ff6600;
+  color: #ff6600;
   font-weight: bold;
   font-size: 1rem;
   margin: 15px auto 0 auto;
   width: auto;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
+.course button:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
 
 .add-course {
   display: flex;

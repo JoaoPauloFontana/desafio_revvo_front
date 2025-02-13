@@ -62,16 +62,23 @@
 }
 
 .modal button {
+  background: transparent;
+  border: 2px solid #4da818;
+  color: #4da818;
+  font-weight: bold;
+  font-size: 1rem;
   padding: 12px 20px;
   border-radius: 25px;
   cursor: pointer;
-  background-color: #007bff;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   margin-top: 15px;
 }
+
+.modal button:hover {
+  background: #4da818;
+  color: white;
+}
+
 
 .modal-close {
   position: absolute;
@@ -107,7 +114,7 @@
 }
 
 .modal-input:focus, .modal-textarea:focus {
-  border-color: #007bff;
+  border-color: #000000;
 }
 
 .modal-textarea {
@@ -205,10 +212,6 @@
 .modal-textarea {
   height: 120px;
   resize: none !important;
-}
-
-.modal-btn.delete {
-  background: #d33;
 }
 
 #view-course-modal .modal {
@@ -356,7 +359,7 @@
 
 #view-course-modal .text-wrapper input:focus,
 #view-course-modal .text-wrapper textarea:focus {
-  border-color: #007bff;
+  border-color: #000000;
   background-color: white;
 }
 
@@ -383,12 +386,35 @@
 }
 
 #view-course-modal .button-group #edit-course {
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#view-course-modal .button-group #edit-course:hover {
   background: #007bff;
   color: white;
 }
 
 #view-course-modal .button-group #delete-course {
+  background: transparent;
+  border: 2px solid #d33;
+  color: #d33;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#view-course-modal .button-group #delete-course:hover {
   background: #d33;
   color: white;
 }
+
 
