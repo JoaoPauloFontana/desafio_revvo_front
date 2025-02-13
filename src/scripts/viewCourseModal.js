@@ -1,4 +1,5 @@
 import { fetchCourseById, deleteCourse, updateCourse } from "./api.js";
+import { isValidURL } from "./helpers.js";
 
 export function setupViewCourseModal(courseId) {
     const existingModal = document.getElementById("view-course-modal");
@@ -120,12 +121,26 @@ async function handleEditCourse(modalContainer, courseId) {
         if (result.isConfirmed) {
             const title = modalContainer.querySelector("#course-title").value.trim();
             const description = modalContainer.querySelector("#course-description").value.trim();
-            const link = modalContainer.querySelector("#course-link").value.trim();
+            let link = modalContainer.querySelector("#course-link").value.trim();
             const files = modalContainer.querySelector("#course-image").files;
 
             if (!title || !description || !link) {
                 Swal.fire("Erro!", "Preencha todos os campos obrigatórios.", "error");
                 return;
+            }
+
+            if (!isValidURL(link)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Link inválido!",
+                    text: "Insira uma URL válida, ex: https://exemplo.com",
+                    confirmButtonColor: "#d33",
+                });
+                return;
+            }
+
+            if (!link.startsWith("http://") && !link.startsWith("https://")) {
+                link = "https://" + link;
             }
 
             const imagePromises = Array.from(files).map(file => {

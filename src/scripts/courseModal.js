@@ -1,5 +1,6 @@
 import { createCourse } from "./api.js";
 import { state } from "./state.js";
+import { isValidURL } from "./helpers.js";
 
 export function setupCourseModal() {
     if (document.getElementById("course-modal")) {
@@ -47,7 +48,7 @@ function initCourseModal() {
     document.getElementById("save-course").addEventListener("click", async () => {
         const title = document.getElementById("course-title").value.trim();
         const description = document.getElementById("course-description").value.trim();
-        const link = document.getElementById("course-link").value.trim();
+        let link = document.getElementById("course-link").value.trim();
         const files = fileInput.files;
 
         if (!title || !description || !link || files.length === 0) {
@@ -58,6 +59,20 @@ function initCourseModal() {
                 confirmButtonColor: "#007bff",
             });
             return;
+        }
+
+        if (!isValidURL(link)) {
+            Swal.fire({
+                icon: "error",
+                title: "Link inválido!",
+                text: "Insira uma URL válida, ex: https://exemplo.com",
+                confirmButtonColor: "#d33",
+            });
+            return;
+        }
+
+        if (!link.startsWith("http://") && !link.startsWith("https://")) {
+            link = "https://" + link;
         }
 
         const imagePromises = Array.from(files).map(file => {

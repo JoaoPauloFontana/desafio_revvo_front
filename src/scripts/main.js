@@ -33,13 +33,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             const createdAt = new Date(course.created_at);
             const isNew = createdAt >= threeDaysAgo;
 
+            const courseLink = normalizeLink(course.link);
+
             courseCard.innerHTML = `
                 <div class="course-image-container">
                     <img src="${course.first_image}" alt="${course.title}">
                     ${isNew ? '<div class="new-course-ribbon">NOVO</div>' : ""}
                 </div>
-                <img src="${course.first_image}" alt="${course.title}">
-                <h3>${course.title}</h3>
+                <h3 class="course-title">
+                    <a href="${courseLink}" target="_blank" class="course-link">
+                        ${course.title}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" class="external-icon">
+                            <path fill="currentColor" d="M14 3h7v7h-2V5.41L9.41 15 8 13.59 17.59 4H14V3ZM5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7H5V5Z"/>
+                        </svg>
+                    </a>
+                </h3>
                 <p>${course.description}</p>
                 <button class="view-course-btn" data-id="${course.id}">VER CURSO</button>
             `;
@@ -77,6 +85,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 });
+
+function normalizeLink(link) {
+    if (!link.startsWith("http://") && !link.startsWith("https://")) {
+        return "https://" + link;
+    }
+    return link;
+}
 
 function loadModal(callback) {
     fetch("components/modal.html")

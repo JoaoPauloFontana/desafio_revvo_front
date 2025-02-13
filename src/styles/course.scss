@@ -1,15 +1,3 @@
-button {
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  background-color: #007bff;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  margin-top: 15px;
-}
-
 .courses {
   padding: 40px;
   text-align: center;
@@ -97,4 +85,36 @@ button {
   font-size: 24px;
   border: 2px dashed #ccc;
   cursor: pointer;
+}
+
+.course-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.course-title a {
+  text-decoration: none;
+  color: #ff6600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease-in-out;
+}
+
+.course-title a:hover {
+  color: #e15800;
+}
+
+.external-icon {
+  width: 16px;
+  height: 16px;
+  fill: #ff6600;
+  transition: transform 0.3s ease-in-out, fill 0.3s ease-in-out;
+}
+
+.course-title a:hover .external-icon {
+  transform: scale(1.2);
+  fill: #a84200;
 }
