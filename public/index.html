@@ -6,6 +6,7 @@
     <title>LEO - Plataforma de Cursos</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="assets/css/banner.css">
 </head>
 <body>
 <header>
@@ -26,11 +27,24 @@
 
 <main>
     <section class="banner">
-        <div class="banner-text">
-            <h1>LOREM IPSUM</h1>
-            <p>Aenean lacinia bibendum nulla sed consectetur.</p>
-            <button>VER CURSO</button>
+        <div class="banner-wrapper">
+            <button class="banner-btn left">&lt;</button>
+
+            <div class="banner-images">
+                <img src="https://c4.wallpaperflare.com/wallpaper/11/624/62/simple-desk-clocks-books-wallpaper-preview.jpg" alt="Banner 1" data-title="Curso de Design Gráfico" data-description="Aprenda a criar designs incríveis com este curso completo.">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL_mvAbPcfw3_7wsuajWPWuz2GhhKgGMDP_Q&s" alt="Banner 2" data-title="Desenvolvimento Web" data-description="Domine HTML, CSS e JavaScript para criar sites modernos.">
+                <img src="https://img.freepik.com/free-photo/flat-lay-arrangement-desk-elements-with-copy-space_23-2148513316.jpg?semt=ais_hybrid" alt="Banner 3" data-title="Programação em Python" data-description="Aprenda Python do zero e torne-se um desenvolvedor profissional.">
+            </div>
+
+            <div class="banner-info">
+                <h1 class="banner-title">Curso de Design Gráfico</h1>
+                <p class="banner-description">Aprenda a criar designs incríveis com este curso completo.</p>
+                <button class="banner-btn-view">VER CURSO</button>
+            </div>
+
+            <button class="banner-btn right">&gt;</button>
         </div>
+        <div class="banner-indicators"></div>
     </section>
 
     <section class="courses">
@@ -55,6 +69,7 @@
     <p>Copyright 2025 - Todos os direitos reservados.</p>
 </footer>
 
+<script src="assets/js/banner.js" defer></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/main.js"></script>
 </body>

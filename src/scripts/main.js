@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("🚀 Página carregada com sucesso!");
 
+    const scriptBanner = document.createElement("script");
+    scriptBanner.src = "assets/js/banner.js";
+    scriptBanner.defer = true;
+    document.body.appendChild(scriptBanner);
+
     loadModal(() => {
         if (typeof modalInit === "function") modalInit();
         if (typeof closeModal === "function") closeModal();
