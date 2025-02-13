@@ -35,4 +35,34 @@ async function createCourse(courseData) {
     }
 }
 
-export { fetchCourses, createCourse };
+async function fetchCourseById(courseId) {
+    try {
+        const response = await fetch(`http://localhost:8080/courses/${courseId}`);
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error(result.message || "Erro ao buscar curso.");
+        }
+
+        return result.data;
+    } catch (error) {
+        console.error("❌ Erro ao buscar curso:", error);
+        return null;
+    }
+}
+
+async function deleteCourse(courseId) {
+    try {
+        const response = await fetch(`http://localhost:8080/courses/${courseId}`, {
+            method: "DELETE"
+        });
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("❌ Erro ao excluir curso:", error);
+        return { success: false, message: "Erro ao conectar com o servidor." };
+    }
+}
+
+export { fetchCourses, createCourse, fetchCourseById, deleteCourse };

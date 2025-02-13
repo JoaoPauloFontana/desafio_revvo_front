@@ -1,6 +1,7 @@
 import { fetchCourses } from "./api.js";
 import { setupSearch } from "./search.js";
 import { setupCourseModal } from "./courseModal.js";
+import { setupViewCourseModal } from "./viewCourseModal.js";
 import { state } from "./state.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -29,9 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <img src="${course.first_image}" alt="${course.title}">
                 <h3>${course.title}</h3>
                 <p>${course.description}</p>
-                <a href="${course.link}" target="_blank">
-                    <button>VER CURSO</button>
-                </a>
+                <button class="view-course-btn" data-id="${course.id}">VER CURSO</button>
             `;
 
             courseListContainer.appendChild(courseCard);
@@ -42,6 +41,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         addCourseBtn.innerHTML = `<span>+</span><p>ADICIONAR CURSO</p>`;
         addCourseBtn.addEventListener("click", setupCourseModal);
         courseListContainer.appendChild(addCourseBtn);
+
+        document.querySelectorAll(".view-course-btn").forEach(button => {
+            button.addEventListener("click", (event) => {
+                const courseId = event.target.dataset.id;
+                console.log(courseId);
+                setupViewCourseModal(courseId);
+            });
+        });
     }
 
     renderCourses();
