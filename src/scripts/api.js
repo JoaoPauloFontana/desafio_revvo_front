@@ -51,6 +51,24 @@ async function fetchCourseById(courseId) {
     }
 }
 
+async function updateCourse(courseId, courseData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/courses/${courseId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(courseData)
+        });
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("❌ Erro ao atualizar curso:", error);
+        return { success: false, message: "Erro ao conectar com o servidor." };
+    }
+}
+
 async function deleteCourse(courseId) {
     try {
         const response = await fetch(`http://localhost:8080/courses/${courseId}`, {
@@ -65,4 +83,4 @@ async function deleteCourse(courseId) {
     }
 }
 
-export { fetchCourses, createCourse, fetchCourseById, deleteCourse };
+export { fetchCourses, createCourse, fetchCourseById, updateCourse, deleteCourse };
