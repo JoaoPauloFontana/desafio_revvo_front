@@ -3,7 +3,6 @@ import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import cleanCSS from 'gulp-clean-css';
 import uglify from 'gulp-uglify';
-import imagemin from 'gulp-imagemin';
 import autoprefixer from 'gulp-autoprefixer';
 import browserSync from 'browser-sync';
 
@@ -26,12 +25,6 @@ export function minifyJS() {
         .pipe(sync.stream());
 }
 
-export function optimizeImages() {
-    return gulp.src('src/images/**/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('public/assets/images'));
-}
-
 export function serve() {
     sync.init({
         server: './public'
@@ -39,11 +32,10 @@ export function serve() {
 
     gulp.watch('src/styles/**/*.scss', compileSass);
     gulp.watch('src/scripts/**/*.js', minifyJS);
-    gulp.watch('src/images/**/*', optimizeImages);
     gulp.watch('public/*.html').on('change', sync.reload);
 }
 
 export default gulp.series(
-    gulp.parallel(compileSass, minifyJS, optimizeImages),
+    gulp.parallel(compileSass, minifyJS),
     serve
 );
