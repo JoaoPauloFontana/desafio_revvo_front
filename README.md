@@ -37,6 +37,15 @@ Antes de começar, certifique-se de ter as seguintes tecnologias instaladas:
    http://localhost:3000
    ```
 
+## 🖥️ Funcionalidades da Interface
+A interface do sistema foi desenvolvida utilizando **JavaScript, HTML e CSS** e conta com as seguintes telas:
+
+- **Adição do Curso:** Permite cadastrar novos cursos com informações e imagens.
+- **Edição do Curso:** Possibilita a modificação de detalhes de um curso já existente.
+- **Banner Rotativo:** Exibe os cursos disponíveis de forma dinâmica.
+- **Busca Geral no Topo:** Facilita a localização de cursos cadastrados.
+- **Modal de Avisos:** Exibe notificações e informações relevantes ao usuário.
+
 Se precisar de mais informações, consulte a documentação oficial das tecnologias utilizadas. 🚀
 
 
